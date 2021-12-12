@@ -1,3 +1,15 @@
+2- player shoting game using microbit, use if you have 2 microbites.
+
+Project:
+  Microbits (bits) connect using radio,
+  they send messages for every move, butllet shot and constanly while bullet is flying
+  and you mush shoot other player with bullet
+  default radio group is 196
+ 
+Note:
+  I maybe change to chose radio group in future
+
+Made with Microsoft make code ˇˇ.
 
 > Open this page at [https://mankifg.github.io/shoting-game-2p/](https://mankifg.github.io/shoting-game-2p/)
 
