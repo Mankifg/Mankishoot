@@ -1,3 +1,5 @@
+## How to use?
+
 2- player shoting game using microbit, use if you have 2 microbites.
 
 Project:
