@@ -40,23 +40,24 @@ radio.onReceivedValue(function (name, value) {
         ebullet.delete()
     }
 })
+let ebullet: game.LedSprite = null
+let bullet: game.LedSprite = null
 let timer = 0
 let p2: game.LedSprite = null
 let p1: game.LedSprite = null
-let ebullet: game.LedSprite = null
-let bullet: game.LedSprite = null
 basic.clearScreen()
-bullet.delete()
-ebullet.delete()
-radio.setGroup(196)
 p1 = game.createSprite(2, 4)
 p2 = game.createSprite(2, 0)
 timer = 0
+radio.setGroup(196)
+let BulletAlive = true
+basic.forever(function () {
+    radio.sendValue("move", p1.get(LedSpriteProperty.X))
+    if (true) {
+        radio.sendValue("bmove", bullet.get(LedSpriteProperty.X))
+    }
+})
 basic.forever(function () {
     basic.pause(1000)
     timer += 1000
-})
-basic.forever(function () {
-    radio.sendValue("move", p1.get(LedSpriteProperty.X))
-    radio.sendValue("bmove", bullet.get(LedSpriteProperty.X))
 })
