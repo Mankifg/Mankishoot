@@ -51,6 +51,7 @@ p2 = game.createSprite(2, 0)
 timer = 0
 radio.setGroup(196)
 let BulletAlive = true
+basic.showIcon(IconNames.Duck)
 basic.forever(function () {
     radio.sendValue("move", p1.get(LedSpriteProperty.X))
     if (true) {
