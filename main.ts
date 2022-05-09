@@ -3,6 +3,9 @@ function simulate (x: number, y: number) {
     for (let index = 0; index < 4; index++) {
         ebullet.change(LedSpriteProperty.Y, 1)
         basic.pause(250)
+        if (ebullet.isTouching(p1)) {
+            iWin()
+        }
     }
     ebullet.delete()
 }
@@ -38,21 +41,39 @@ radio.onReceivedValue(function (name, value) {
     if (name == "bset") {
         simulate(value, 0)
     }
+    if (name == "win") {
+        basic.clearScreen()
+        basic.showIcon(IconNames.Yes)
+        basic.pause(500)
+    }
 })
+function iWin () {
+    radio.sendValue("win", 0)
+    basic.clearScreen()
+    basic.showIcon(IconNames.Yes)
+    basic.pause(500)
+    basic.showNumber(score1)
+}
 let bullet: game.LedSprite = null
 let ebullet: game.LedSprite = null
 let timer = 0
+let score1 = 0
 let p2: game.LedSprite = null
 let p1: game.LedSprite = null
 basic.clearScreen()
 p1 = game.createSprite(2, 4)
 p2 = game.createSprite(2, 0)
+score1 = 0
+let score2 = 0
 timer = 0
 radio.setGroup(196)
+basic.forever(function () {
+    radio.sendValue("move", p1.get(LedSpriteProperty.X))
+})
 basic.forever(function () {
     basic.pause(1000)
     timer += 1000
 })
 basic.forever(function () {
-    radio.sendValue("move", p1.get(LedSpriteProperty.X))
+	
 })
