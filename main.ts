@@ -1,20 +1,24 @@
+function shot (x: number) {
+    if (timer > 2000) {
+        timer = 0
+        bullet = game.createSprite(x, 5)
+        radio.sendValue("bset", x)
+        for (let index = 0; index < 4; index++) {
+            bullet.change(LedSpriteProperty.Y, -1)
+            radio.sendValue("bmove", bullet.get(LedSpriteProperty.X))
+            basic.pause(250)
+        }
+        bullet.delete()
+        radio.sendValue("b", 0)
+    }
+}
 input.onButtonPressed(Button.A, function () {
     p1.change(LedSpriteProperty.X, -1)
     p1.ifOnEdgeBounce()
     basic.pause(200)
 })
 input.onButtonPressed(Button.AB, function () {
-    if (timer > 2000) {
-        timer = 0
-        bullet = game.createSprite(p1.get(LedSpriteProperty.X), 5)
-        radio.sendValue("bset", p1.get(LedSpriteProperty.X))
-        for (let index = 0; index < 4; index++) {
-            bullet.change(LedSpriteProperty.Y, -1)
-            basic.pause(250)
-        }
-        bullet.delete()
-        radio.sendValue("b", 0)
-    }
+    shot(p1.get(LedSpriteProperty.X))
 })
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "end") {
@@ -50,13 +54,8 @@ p1 = game.createSprite(2, 4)
 p2 = game.createSprite(2, 0)
 timer = 0
 radio.setGroup(196)
-let BulletAlive = true
-basic.showIcon(IconNames.Duck)
 basic.forever(function () {
     radio.sendValue("move", p1.get(LedSpriteProperty.X))
-    if (true) {
-        radio.sendValue("bmove", bullet.get(LedSpriteProperty.X))
-    }
 })
 basic.forever(function () {
     basic.pause(1000)
